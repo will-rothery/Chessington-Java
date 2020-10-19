@@ -6,8 +6,6 @@ public class Board {
 
     private Piece[][] board = new Piece[8][8];
 
-    private Board() {
-    }
 
     public static Board forNewGame() {
         Board board = new Board();
@@ -18,7 +16,6 @@ public class Board {
             board.board[1][col] = new Pawn(PlayerColour.BLACK);
             board.board[6][col] = new Pawn(PlayerColour.WHITE);
         }
-
         return board;
     }
 
