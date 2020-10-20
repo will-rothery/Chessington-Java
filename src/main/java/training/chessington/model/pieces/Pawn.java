@@ -16,8 +16,8 @@ public class Pawn extends AbstractPiece {
 
     @Override
     public List<Move> getAllowedMoves(Coordinates from, Board board) {
+        // declare and define
         List<Move> results = new ArrayList<>();
-        Piece piece = board.get(from);
         Coordinates coords = new Coordinates(from.getRow(), from.getCol());
 
         Coordinates up = coords.plus(-1, 0);
@@ -45,42 +45,42 @@ public class Pawn extends AbstractPiece {
         Piece pieceDiagonalUpRight = safeBoardGet(board, from.plus(-1, 1));
         Piece pieceDiagonalDownRight = safeBoardGet(board, from.plus(1, 1));
 
-
+        // White rules
         if (getColour() == PlayerColour.WHITE) {
-            if (up.getRow() >= 0 && board.get(up) == null) {
+            if (up.getRow() >= 0 && board.get(up) == null) { // pawn can't leave the board and there's nothing in front of it
                 try {
-                    results.add(moveUp);
+                    results.add(moveUp); // move one space
                 } catch (ArrayIndexOutOfBoundsException e) {
                     return null;
                 }
-                if (from.getRow() == 6 && board.get(twoUp) == null) {
-                    results.add(moveTwoUp);
+                if (from.getRow() == 6 && board.get(twoUp) == null) { // if the pawn is in the starting block and there's nothing in front of it
+                    results.add(moveTwoUp); // move two spaces
                 }
             }
-            if (pieceDiagonalUpLeft != null && pieceDiagonalUpLeft.getColour() != PlayerColour.WHITE) {
-                results.add(diagonalUpLeft);
+            if (pieceDiagonalUpLeft != null && pieceDiagonalUpLeft.getColour() != PlayerColour.WHITE) { // if there's something in the left diagonal space and it's not white
+                results.add(diagonalUpLeft); // move diagonally left
             }
-            if (pieceDiagonalUpRight != null && pieceDiagonalUpRight.getColour() != PlayerColour.WHITE) {
-                results.add(diagonalUpRight);
+            if (pieceDiagonalUpRight != null && pieceDiagonalUpRight.getColour() != PlayerColour.WHITE) { // if there's something in the left diagonal space and it's not white
+                results.add(diagonalUpRight); // move diagonally right
             }
         }
 
-
+        // Black rules
         if (getColour() == PlayerColour.BLACK) {
-            if (down.getRow() <= 7 && board.get(down) == null) {
+            if (down.getRow() <= 7 && board.get(down) == null) { // pawn can't leave the board and there's nothing in front of it
                 try {
-                    results.add(moveDown);
+                    results.add(moveDown); // move one space
                 } catch(ArrayIndexOutOfBoundsException e) {
                     return null;
                 }
-                if (from.getRow() == 1 && board.get(twoDown) == null) {
-                    results.add(moveTwoDown);
+                if (from.getRow() == 1 && board.get(twoDown) == null) { // if the pawn is in the starting block and there's nothing in front of it
+                    results.add(moveTwoDown); // move two spaces
                 }
-                if (pieceDiagonalDownLeft != null && pieceDiagonalDownLeft.getColour() != PlayerColour.BLACK) {
-                    results.add(diagonalDownLeft);
+                if (pieceDiagonalDownLeft != null && pieceDiagonalDownLeft.getColour() != PlayerColour.BLACK) { // if there's something in the left diagonal space and it's not black
+                    results.add(diagonalDownLeft); // move diagonally left
                 }
-                if (pieceDiagonalDownRight != null && pieceDiagonalDownRight.getColour() != PlayerColour.BLACK) {
-                    results.add(diagonalDownRight);
+                if (pieceDiagonalDownRight != null && pieceDiagonalDownRight.getColour() != PlayerColour.BLACK) { // if there's something in the left diagonal space and it's not black
+                    results.add(diagonalDownRight); // move diagonally right
                 }
             }
         }
