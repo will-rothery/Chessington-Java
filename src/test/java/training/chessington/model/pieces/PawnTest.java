@@ -40,11 +40,6 @@ public class PawnTest {
         // Assert
         assertThat(moves).contains(new Move(coords, coords.plus(1, 0)));
     }
-//<<<<<<< HEAD
-//<<<<<<< HEAD
-//=======
-//=======
-//>>>>>>> 99c2f96... Tests for pawns moving two spaces initially
 
     @Test
     public void whitePawnCanMoveUpTwoSquaresIfNotMoved() {

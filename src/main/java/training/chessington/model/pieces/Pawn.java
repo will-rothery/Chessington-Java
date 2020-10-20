@@ -21,19 +21,23 @@ public class Pawn extends AbstractPiece {
 
         if (getColour() == PlayerColour.WHITE) {
             Coordinates newCoords = coords.plus(-1, 0);
-            if (board.get(newCoords) == null) {
+            if (newCoords.getRow() >= 0 && board.get(newCoords) == null) {
                 Move move = new Move(coords, newCoords);
                 newCoords = newCoords.plus(-1, 0);
                 if (board.get(newCoords) == null && from.getRow() == 6) {
                     Move whiteStartMove = new Move(coords, newCoords);
                     results.add(whiteStartMove);
                 }
-                results.add(move);
+                try {
+                    results.add(move);
+                } catch(ArrayIndexOutOfBoundsException e) {
+                    return null;
+                }
             }
         }
         if (getColour() == PlayerColour.BLACK) {
             Coordinates newCoords = coords.plus(1, 0);
-            if (board.get(newCoords) == null) {
+            if (newCoords.getRow() <= 7 && board.get(newCoords) == null) {
                 Move move = new Move(coords, newCoords);
                 newCoords = newCoords.plus(1, 0);
                 if (board.get(newCoords) == null && from.getRow() == 1) {
